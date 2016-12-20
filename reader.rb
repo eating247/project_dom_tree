@@ -1,13 +1,13 @@
-require_relative 'loader.rb'
-require_relative 'tree.rb'
+require_relative 'loader'
+require_relative 'tree'
+require_relative 'renderer'
 
 class DOMReader
-  attr_accessor :string
+  attr_accessor :string, :tree
 
   def initialize
     @string = load_file
-    #@tree = build_tree
-    #@renderer = NodeRenderer.new(@tree)
+    @tree = get_tree
     #@searcher = TreeSearcher.new(@tree)
   end
 
@@ -16,8 +16,13 @@ class DOMReader
     loader.load(path)
   end
 
-  def build_tree
+  def get_tree
     DOMTree.new(@string)
+  end
+
+  def render
+    renderer = NodeRenderer.new(@tree)
+    renderer.render(@tree.root)
   end
 
 end
