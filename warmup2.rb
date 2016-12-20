@@ -114,11 +114,3 @@ class DOMTree
   end
 
 end
-
-=begin
-load 'warmup2.rb'
-html_string = "<div>  div text before  <p>    p text  </p>  <div>    more div text  </div>  div text after</div>"
-
-a = DOMTree.new(html_string)
-
-=end
