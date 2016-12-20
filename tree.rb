@@ -3,7 +3,7 @@ Tag = Struct.new(:function, :type, :attributes)
 
 class DOMTree
 
-  attr_accessor :root, :string, :stack
+  attr_accessor :root, :string
 
   def initialize(string)
     @string = string
