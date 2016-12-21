@@ -48,17 +48,17 @@ class TreeSearcher
   def search_ancestors(node, attribute, value)
     matches = []
     queue = [node]
-    until queue.empty?
+    loop do
       curr_node = queue[0].parent
+      break if curr_node.nil?
       tag = curr_node.children.first
-      binding.pry
       if match?(tag, attribute, value)
         matches << curr_node
       end
       queue << curr_node
       queue.shift
     end
-    matches.size
+    matches
   end
 
 end
@@ -72,7 +72,7 @@ b.search_by("class", "super-header")
 node = b.search_by("class", "super-header").first
 b.search_descendants(node, "class", "emphasized")
 node = b.search_descendants(node, "class", "emphasized").first
-b.search_ancestors(node, "class", "superheader")
+b.search_ancestors(node, "class", "super-header").size
 
 
 =end

@@ -1,14 +1,15 @@
 require_relative 'loader'
 require_relative 'tree'
 require_relative 'renderer'
+require_relative 'searcher'
 
 class DOMReader
-  attr_accessor :string, :tree
+  attr_accessor :string, :tree, :searcher
 
   def initialize
     @string = load_file
     @tree = get_tree
-    #@searcher = TreeSearcher.new(@tree)
+    @searcher = TreeSearcher.new(@tree)
   end
 
   def load_file(path="test.html")
