@@ -8,7 +8,8 @@ class DOMReader
 
   def initialize
     @string = load_file
-    @tree = get_tree
+    @tree = DOMTree.new(@string)
+    @renderer = NodeRenderer.new(@tree)
     @searcher = TreeSearcher.new(@tree)
   end
 
@@ -17,13 +18,12 @@ class DOMReader
     loader.load(path)
   end
 
-  def get_tree
-    DOMTree.new(@string)
+  def render
+    renderer.render(@tree.root)
   end
 
-  def render
-    renderer = NodeRenderer.new(@tree)
-    renderer.render(@tree.root)
+  def rebuild
+    @tree.outputter
   end
 
 end
